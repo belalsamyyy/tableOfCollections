@@ -1,0 +1,6 @@
+framework module Pods_TableOfCollection_Example {
+  umbrella header "Pods-TableOfCollection-Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
