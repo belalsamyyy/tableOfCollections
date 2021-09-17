@@ -12,4 +12,4 @@ BelalSamy, belalsamy10@gmail.com
 
 ## License
 
-DesignX is available under the MIT license. See the LICENSE file for more info.
+tableOfCollections is available under the MIT license. See the LICENSE file for more info.
