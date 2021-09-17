@@ -23,7 +23,7 @@ class TableCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        collectionFlowLayout.scrollDirection = .horizontal
+        //collectionFlowLayout.scrollDirection = .horizontal
         collectionView = CollectionView(frame: .zero, collectionViewLayout: collectionFlowLayout)
         
         // register

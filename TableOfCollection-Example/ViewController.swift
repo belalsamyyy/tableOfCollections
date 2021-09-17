@@ -12,14 +12,11 @@ final class ViewController: UIViewController {
     // outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var ImageView: UIImageView!
-
-    // variables
-    var tableSectionIndex = 0
-
+    
     // constants
     let continueWatching = ["Movie 1", "Movie 2", "Movie 3", "Movie 4"]
-    let popular = ["Movie 1", "Movie 2", "Movie 3", "Movie 4"]
-    let movies = ["Movie 1", "Movie 2", "Movie 3"]
+    let popular = ["Movie 1", "Movie 2", "Movie 3", "Movie 4", "Movie 5", "Movie 6", "Movie 7"]
+    let movies = ["Movie 1", "Movie 2", "Movie 3", "Movie 5", "Movie 6", "Movie 7"]
     let series = ["series 1"]
     let plays = ["Play 1", "Play 2", "Play 3"]
     let games = ["Game 1", "Game 2"]
@@ -52,7 +49,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
        let section = TableSections.allCases[section]
-        return section.ui.headerTitle
+        return section.ui.sectionTitle
    }
 
     // row
@@ -61,12 +58,19 @@ extension ViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableSectionIndex = indexPath.section
+        let section = TableSections.allCases[indexPath.section]
         var cell = tableView.dequeueReusableCell(withIdentifier: TableCell.identifier) as? TableCell
         
         if cell == nil {
             cell = TableCell(style: .default, reuseIdentifier: TableCell.identifier)
-            // Configure the cell...
+            switch section {
+            case .continueWatching, .Movies, .Series, .Plays, .games:
+                cell?.collectionFlowLayout.scrollDirection = .horizontal
+                
+            case .popular:
+                cell?.collectionFlowLayout.scrollDirection = .vertical
+            }
+            
             cell?.selectionStyle = .none
         }
         return cell!
@@ -80,7 +84,7 @@ extension ViewController: UITableViewDelegate {
     
     // section
     func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
-       return 28
+       return 50
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -100,14 +104,15 @@ extension ViewController: UITableViewDelegate {
     }
     
      // row
-     func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
-        return tableSectionIndex == 0 ? 200 : 250
-     }
-
-     func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell: TableCell = cell as? TableCell else { return }
-        cell.setCollectionView(dataSource: self, delegate: self, indexPath: indexPath)
-     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = TableSections.allCases[indexPath.section]
+        return section.ui.sectionHeight
+    }
+    
+    func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+       guard let cell: TableCell = cell as? TableCell else { return }
+       cell.setCollectionView(dataSource: self, delegate: self, indexPath: indexPath)
+    }
 }
 
 
@@ -150,12 +155,12 @@ extension ViewController: UICollectionViewDataSource {
         switch section {
         case .popular, .Movies, .Series, .Plays, .games:
             let cell1 = collectionView.dequeue(indexPath: indexPath) as CollectionCell
-            cell1.backgroundColor = section.ui.color
+            cell1.backgroundColor = section.ui.itemColor
             return cell1
             
         case .continueWatching:
             let cell2 = collectionView.dequeue(indexPath: indexPath) as CollectionCell2
-            cell2.backgroundColor = section.ui.color
+            cell2.backgroundColor = section.ui.itemColor
             return cell2
         }
      
@@ -170,7 +175,7 @@ extension ViewController: UICollectionViewDelegate {
     // item
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let section = TableSections.allCases[collectionView.tag]
-        print("section : \(section.ui.headerTitle) => \(indexPath.item)")
+        print("section : \(section.ui.sectionTitle) => \(indexPath.item)")
     }
 }
 
@@ -184,16 +189,28 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, minimumLineSpacingForSectionAt _: Int) -> CGFloat {
-        return 10
+        return 10 // vertical spacing
     }
 
     func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, minimumInteritemSpacingForSectionAt _: Int) -> CGFloat {
-        return 0
+        return 0 // horizontal spacing
     }
     
     // item
     func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
         let section = TableSections.allCases[collectionView.tag]
-        return section.ui.size
+        switch section {
+        case .continueWatching:
+            return collectionView.size(rows: 1, columns: 1.5)
+            
+        case .popular:
+            return collectionView.size(rows: 2, columns: 3)
+
+        case .Movies, .Series, .Plays, .games:
+            return collectionView.size(rows: 1, columns: 3)
+        }
+        
     }
 }
+
+

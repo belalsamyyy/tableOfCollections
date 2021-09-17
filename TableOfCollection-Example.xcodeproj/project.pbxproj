@@ -61,9 +61,9 @@
 		4109500B26F43E0E00D82857 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				412BE08D26F43D2C00295C84 /* ViewController.swift */,
-				4109500526F43DD700D82857 /* TableCell.swift */,
 				D9A629E726F34C1600558330 /* TableSections.swift */,
+				4109500526F43DD700D82857 /* TableCell.swift */,
+				412BE08D26F43D2C00295C84 /* ViewController.swift */,
 			);
 			name = TableView;
 			sourceTree = "<group>";

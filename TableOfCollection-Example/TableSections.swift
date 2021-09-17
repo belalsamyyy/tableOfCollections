@@ -16,27 +16,28 @@ enum TableSections: CaseIterable {
     case Plays
     case games
     
-    var ui: (headerTitle: String, color: UIColor, size: CGSize) {
+    var ui: (sectionTitle: String, sectionHeight: CGFloat, itemColor: UIColor) {
         switch self {
         case .continueWatching:
-            return ("Continue Watching", .green, CGSize(width: 250, height: 150))
+            return ("Continue Watching", 200, .green)
             
         case .popular:
-            return ("Popular", .red, CGSize(width: 150, height: 200))
+            return ("Popular", 250, .red)
 
         case .Movies:
-            return ("Movies", .blue, CGSize(width: 150, height: 200))
+            return ("Movies", 200, .blue)
 
         case .Series:
-            return ("Series", .orange, CGSize(width: 150, height: 200))
+            return ("Series", 200, .orange)
 
         case .Plays:
-            return ("Plays", .brown, CGSize(width: 150, height: 200))
+            return ("Plays", 200, .brown)
 
         case .games:
-            return ("Games", .purple, CGSize(width: 150, height: 200))
+            return ("Games", 200, .purple)
 
         }
     }
 
 }
+
