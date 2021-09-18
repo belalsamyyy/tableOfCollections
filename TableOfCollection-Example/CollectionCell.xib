@@ -33,6 +33,9 @@
                 <constraint firstItem="5CB-Hy-Yzb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xGd-wp-Io0"/>
             </constraints>
             <size key="customSize" width="205" height="307"/>
+            <connections>
+                <outlet property="myLabel" destination="5CB-Hy-Yzb" id="3z3-w6-WTb"/>
+            </connections>
             <point key="canvasLocation" x="74.637681159420296" y="70.647321428571431"/>
         </collectionViewCell>
     </objects>

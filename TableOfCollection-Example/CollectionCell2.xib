@@ -34,6 +34,9 @@
                 <constraint firstAttribute="bottom" secondItem="NeP-NX-33M" secondAttribute="bottom" id="iUo-fy-P6f"/>
             </constraints>
             <size key="customSize" width="321" height="192"/>
+            <connections>
+                <outlet property="myLabel" destination="NeP-NX-33M" id="W1U-87-iQR"/>
+            </connections>
             <point key="canvasLocation" x="71.739130434782609" y="112.5"/>
         </collectionViewCell>
     </objects>

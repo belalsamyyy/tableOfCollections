@@ -66,7 +66,9 @@ class TableCell: UITableViewCell {
     
     
     //MARK: - setCollectionView
+    
     final func setCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, indexPath: IndexPath) {
+        
         collectionView.indexPath = indexPath
         collectionView.tag = indexPath.section
 

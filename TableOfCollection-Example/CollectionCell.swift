@@ -8,6 +8,14 @@
 import UIKit
 
 class CollectionCell: UICollectionViewCell {
+    
+    @IBOutlet weak var myLabel: UILabel!
+    
+    var movie: Movie? {
+        didSet {
+            myLabel.text = movie?.name
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

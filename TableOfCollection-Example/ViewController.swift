@@ -14,14 +14,13 @@ final class ViewController: UIViewController {
     @IBOutlet weak var ImageView: UIImageView!
     
     // constants
-    let continueWatching = ["Movie 1", "Movie 2", "Movie 3", "Movie 4"]
-    let popular = ["Movie 1", "Movie 2", "Movie 3", "Movie 4", "Movie 5", "Movie 6", "Movie 7"]
-    let movies = ["Movie 1", "Movie 2", "Movie 3", "Movie 5", "Movie 6", "Movie 7"]
-    let series = ["series 1"]
-    let plays = ["Play 1", "Play 2", "Play 3"]
-    let games = ["Game 1", "Game 2"]
-
+    let continueWatching = [Movie(name: "Contiue Movie 1"), Movie(name: "Contiue Movie 2"),
+                            Movie(name: "Contiue Movie 3"), Movie(name: "Contiue Movie 4")]
     
+    let movies = [Movie(name: "Movie 1"), Movie(name: "Movie 2"), Movie(name: "Movie 3"),
+                  Movie(name: "Movie 4"), Movie(name: "Movie 5"), Movie(name: "Movie 6"),
+                  Movie(name: "Movie 7"), Movie(name: "Movie 8")]
+
     //MARK: - lifecycle
     
     override func viewDidLoad() {
@@ -130,22 +129,10 @@ extension ViewController: UICollectionViewDataSource {
         let section = TableSections.allCases[collectionView.tag]
         switch section {
         case .continueWatching:
-            return movies.count
+            return 4
             
-        case .popular:
-            return popular.count
-
-        case .Movies:
+        case .popular, .Movies, .Series, .Plays, .games:
             return movies.count
-
-        case .Series:
-            return series.count
-
-        case .Plays:
-            return plays.count
-
-        case .games:
-            return games.count
         }
     }
 
@@ -156,11 +143,13 @@ extension ViewController: UICollectionViewDataSource {
         case .popular, .Movies, .Series, .Plays, .games:
             let cell1 = collectionView.dequeue(indexPath: indexPath) as CollectionCell
             cell1.backgroundColor = section.ui.itemColor
+            cell1.movie = movies[indexPath.item]
             return cell1
             
         case .continueWatching:
             let cell2 = collectionView.dequeue(indexPath: indexPath) as CollectionCell2
             cell2.backgroundColor = section.ui.itemColor
+            cell2.movie = continueWatching[indexPath.item]
             return cell2
         }
      
@@ -201,7 +190,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         let section = TableSections.allCases[collectionView.tag]
         switch section {
         case .continueWatching:
-            return collectionView.size(rows: 1, columns: 1.5)
+            return collectionView.size(rows: 1, columns: 1.25)
             
         case .popular:
             return collectionView.size(rows: 2, columns: 3)
