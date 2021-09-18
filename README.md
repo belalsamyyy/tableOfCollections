@@ -4,7 +4,7 @@ collection view within a table view cell has become a common design pattern used
 
 ## Screenshots
 
-![Screenshots](https://user-images.githubusercontent.com/38237387/133815141-0fa9ecbf-6127-4925-8097-011b7bfabceb.png)
+![Screenshots](https://user-images.githubusercontent.com/38237387/133892458-a5b7570e-b5d6-467e-9898-8174a509d3df.png)
 
 ## Author
 
